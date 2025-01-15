@@ -1,0 +1,19 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "To add, remove, and marks as complete",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phumlani-Mabena/To-Do-List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phumlani-Mabena/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/Phumlani-Mabena/To-Do-List#readme"
+}
