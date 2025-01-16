@@ -2,18 +2,25 @@
   "name": "to-do-list",
   "version": "1.0.0",
   "description": "To add, remove, and marks as complete",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "run": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Phumlani-Mabena/To-Do-List.git"
   },
-  "author": "",
+  "author": "Phumlani",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Phumlani-Mabena/To-Do-List/issues"
   },
-  "homepage": "https://github.com/Phumlani-Mabena/To-Do-List#readme"
+  "homepage": "https://github.com/Phumlani-Mabena/To-Do-List#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
 }
