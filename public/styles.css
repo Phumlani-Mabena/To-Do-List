@@ -17,7 +17,7 @@ header{
 
 header,
 form{
-    min-height: 20vh;
+    min-height: 14vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,8 +53,9 @@ form button:hover{
 
 .todo-container{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:left;
+    align-items:normal;
+    
 }
 
 .todo-list{
@@ -67,7 +68,7 @@ form button:hover{
     padding-left: 0.5rem;
     background: white;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -155,3 +156,35 @@ select{
     background: white;
     color: rgb(255, 200, 0);
 }
+
+/* NEW: Main container for centering form and task count */
+.container {
+    width: 650px; /* Fixed width */
+    background-color: mediumslateblue;
+    /*border-color: rgb(80, 72, 126);*/
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(41, 33, 63, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Start alignment for child elements */
+    height: auto; /* Fixed height */
+    position: relative; /* For positioning child elements like .task-summary */
+    margin: auto; /* Center the container on the page */
+    margin-top: 40px; /* Optional additional top margin */
+}
+
+/* NEW: Task summary styling */
+.task-summary {
+    display: flex; /* Align items horizontally */
+    justify-content: space-between; /* Space out the elements */
+    position: absolute; /* Allow precise positioning inside the container */
+    bottom: -0.8vh; /* Place it 2cm above the bottom of the container */
+    width: 90%; /* Ensure it spans most of the container */
+    left: 50%; /* Center horizontally relative to the container */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    padding: 10px; /* Optional: Add padding for spacing inside */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    min-height: 0.1vh;
+}
+
