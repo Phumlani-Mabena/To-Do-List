@@ -12,9 +12,10 @@ This **To-Do List App** is a simple, user-friendly web application designed to h
 **Data Persistence:** Tasks are stored in local storage, ensuring they remain available even after a page refresh.
 
 ## **Technologies Used**
-**Frontend:** HTML, CSS, JavaScript  
+**Frontend:** HTML, CSS, JavaScript 
+**Backend:** Node.js, and Express.js /n
 **Additional Tools:** Visual Studio Code, GitHub for version control
-**Backend:** Node.js, and Express.js 
+ 
 
 ## **Setup Instructions**
 1. Clone or download the repository.
