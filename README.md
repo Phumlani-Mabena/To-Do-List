@@ -14,14 +14,9 @@ This **To-Do List App** is a simple, user-friendly web application designed to h
 ## **Technologies Used**
 **Frontend:**  HTML, CSS, JavaScript 
  
+**Backend:**  Node.js, Express.js  
 
-**Backend:**  
-Node.js  
-Express.js  
-
-**Additional Tools:**  
-Visual Studio Code  
-GitHub for version control
+**Additional Tools:**  Visual Studio Code, GitHub for version control
 
 ## **Setup Instructions**
 1. Clone or download the repository.
