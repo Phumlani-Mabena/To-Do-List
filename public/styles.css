@@ -182,8 +182,8 @@ select{
     width: 90%; /* Ensure it spans most of the container */
     left: 50%; /* Center horizontally relative to the container */
     transform: translateX(-50%); /* Adjust for perfect centering */
-    padding: 10px; /* Optional: Add padding for spacing inside */
-    border-radius: 8px; /* Optional: Add rounded corners */
-    min-height: 0.1vh;
+    padding: 10px; /*Add padding for spacing inside */
+    border-radius: 8px; /* Add rounded corners */
+    min-height: 0.1vh; /*Ensure it doesn't take up too much space */
 }
 
