@@ -161,7 +161,6 @@ select{
 .container {
     width: 650px; /* Fixed width */
     background-color: mediumslateblue;
-    /*border-color: rgb(80, 72, 126);*/
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(41, 33, 63, 0.1);
