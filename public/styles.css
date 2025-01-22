@@ -1,22 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    background-color: mediumslateblue;
+body {
+    /* background-color: mediumslateblue; */
+    background-color: #1f242d;
     color: white;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
 }
 
-header{
+header {
     font-size: 1.5rem;
 }
 
 header,
-form{
+form {
     min-height: 14vh;
     display: flex;
     justify-content: center;
@@ -24,7 +25,7 @@ form{
 }
 
 form input,
-form button{
+form button {
     padding: 0.5rem;
     padding-left: 1rem;
     font-size: 1.8rem;
@@ -33,37 +34,36 @@ form button{
     border-radius: 2rem;
 }
 
-form button{
-    color: rgb(255, 200, 0);
+form button {
+    color: #7cf03d;
     background: white;
     cursor: pointer;
     transition: all, 0.3 ease;
     margin-left: 0.5rem;
 }
 
-form button:hover{
+form button:hover {
     color: white;
-    background: rgb(255, 200, 0);
+    background: #7cf03d;
 }
 
-.fa-plus-circle{
+.fa-plus-circle {
     margin-top: 0.3rem;
     margin-left: -8px;
 }
 
-.todo-container{
+.todo-container {
     display: flex;
-    justify-content:left;
-    align-items:normal;
-    
+    justify-content: left;
+    align-items: normal;
 }
 
-.todo-list{
+.todo-list {
     min-width: 30%;
     list-style: none;
 }
 
-.todo{
+.todo {
     margin: 0.5rem;
     padding-left: 0.5rem;
     background: white;
@@ -78,10 +78,12 @@ form button:hover{
 
 .todo li {
     flex: 1;
+    padding: 0 0.5rem;
 }
 
 .trash-btn,
-.complete-btn{
+.complete-btn,
+.edit-btn {
     color: white;
     border: none;
     padding: 1rem;
@@ -89,36 +91,57 @@ form button:hover{
     font-size: 1.5rem;
 }
 
-.complete-btn{
-    background: rgb(255, 200, 0);
+/* Style for the complete button */
+.complete-btn {
+    background: #7cf03d;
 }
 
-.trash-btn{
+/* Style for the trash button */
+.trash-btn {
     border-top-right-radius: 1.75rem;
     border-bottom-right-radius: 1.75rem;
     background: rgb(171, 171, 171);
 }
 
-.todo-item{
+/* Style for the edit button */
+.edit-btn {
+    background: #ffcc00; /* Yellow background for the edit button */
+    color: white; /* White icon color */
+    border: none; /* No border */
+    padding: 1rem; /* Same padding as other buttons */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    font-size: 1.5rem; /* Match font size of other buttons */
+    border-radius: 50%; /* Circular button */
+    transition:0.3s ease; /* Smooth transition on hover */
+    margin-left: 0.5rem; /* Space between buttons */
+}
+
+/* Hover effect for the edit button */
+.edit-btn:hover {
+    background: #e6b800; /* Slightly darker yellow on hover */
+}
+
+.todo-item {
     padding: 0rem 0.5rem;
 }
 
 .fa-trash,
-.fa-check-circle{
+.fa-check-circle,
+.fa-edit {
     pointer-events: none;
 }
 
-.completed{
+.completed {
     text-decoration: line-through;
     opacity: 0.5;
 }
 
-.slide{
+.slide {
     transform: translateX(10rem);
     opacity: 0;
 }
 
-select{
+select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -126,25 +149,25 @@ select{
     border: none;
 }
 
-.select{
+.select {
     margin: 1rem;
     position: relative;
     overflow: hidden;
     border-radius: 50px;
 }
 
-select{
-    color: rgb(255, 200, 0);
+select {
+    color: black;
     width: 10rem;
     height: 3.2rem;
     cursor: pointer;
     padding: 1rem;
 }
 
-.select::after{
+.select::after {
     content: "\25BC";
     position: absolute;
-    background: rgb(255, 200, 0);
+    background: #7cf03d;
     top: 0;
     right: 0;
     padding: 1rem;
@@ -152,15 +175,15 @@ select{
     transition: all 0.3s ease;
 }
 
-.select::hover::after{
+.select::hover::after {
     background: white;
-    color: rgb(255, 200, 0);
+    color: #7cf03d;
 }
 
-/* NEW: Main container for centering form and task count */
+/* Main container for centering form and task count */
 .container {
     width: 650px; /* Fixed width */
-    background-color: mediumslateblue;
+    background-color: #323946;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(41, 33, 63, 0.1);
@@ -170,20 +193,19 @@ select{
     height: auto; /* Fixed height */
     position: relative; /* For positioning child elements like .task-summary */
     margin: auto; /* Center the container on the page */
-    margin-top: 40px; /* additional top margin */
+    margin-top: 40px; /* Additional top margin */
 }
 
-/* NEW: Task summary styling */
+/* Task summary styling */
 .task-summary {
     display: flex; /* Align items horizontally */
     justify-content: space-between; /* Space out the elements */
     position: absolute; /* Allow precise positioning inside the container */
-    bottom: -0.8vh; /* Place it 2cm above the bottom of the container */
+    bottom: -0.8vh; /* Place it slightly above the bottom of the container */
     width: 90%; /* Ensure it spans most of the container */
     left: 50%; /* Center horizontally relative to the container */
     transform: translateX(-50%); /* Adjust for perfect centering */
-    padding: 10px; /*Add padding for spacing inside */
+    padding: 10px; /* Add padding for spacing inside */
     border-radius: 8px; /* Add rounded corners */
-    min-height: 0.1vh; /*Ensure it doesn't take up too much space */
+    min-height: 0.1vh; /* Ensure it doesn't take up too much space */
 }
-

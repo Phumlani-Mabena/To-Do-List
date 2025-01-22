@@ -10,7 +10,10 @@ const completedTasks = document.getElementById("completed-tasks");
 const incompleteTasks = document.getElementById("incomplete-tasks");
 
 // Event listeners for various user interactions
-document.addEventListener("DOMContentLoaded", getLocalTodos); // Load stored todos when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    getLocalTodos(); // Load stored todos when the page loads
+    restoreFilterState(); // Restore and apply the saved filter state
+});
 todoButton.addEventListener("click", addTodo); // Add a new todo when the button is clicked
 todoList.addEventListener("click", deleteCheck); // Handle delete and complete actions
 filterOption.addEventListener("change", filterTodo); // Filter todos based on selection
@@ -74,7 +77,6 @@ function addTodo(event) {
     // Add the todo item to the list
     todoList.insertBefore(todoDiv, todoList.firstChild);
 
-
     // Clear the input field
     todoInput.value = "";
 
@@ -106,28 +108,49 @@ function deleteCheck(e) {
     }
 }
 
-// Function to filter todos based on their status
+// Function to save the current filter state to local storage
+function saveFilterState(filter) {
+    localStorage.setItem("filter", filter);
+}
+
+// Function to restore the filter state on page load
+function restoreFilterState() {
+    const savedFilter = localStorage.getItem("filter") || "all"; // Default to "all" if no filter is saved
+    filterOption.value = savedFilter; // Set the filter dropdown to the saved state
+    filterTodo({ target: { value: savedFilter } }); // Apply the saved filter
+}
+
+// Modify the filterTodo function to save the filter state
 function filterTodo(e) {
+    const selectedFilter = e.target.value; // Get the selected filter
+    saveFilterState(selectedFilter); // Save the selected filter to local storage
+    applyFilter(selectedFilter); // Apply the filter
+}
+
+// Function to apply the filter based on the given value
+function applyFilter(filter) {
     const todos = todoList.childNodes; // Get all child nodes of the list
     todos.forEach(function (todo) {
-        switch (e.target.value) {
-            case "all":
-                todo.style.display = "flex"; // Show all todos
-                break;
-            case "completed":
-                if (todo.classList.contains("completed")) {
-                    todo.style.display = "flex"; // Show completed todos
-                } else {
-                    todo.style.display = "none"; // Hide incomplete todos
-                }
-                break;
-            case "incomplete":
-                if (!todo.classList.contains("completed")) {
-                    todo.style.display = "flex"; // Show incomplete todos
-                } else {
-                    todo.style.display = "none"; // Hide completed todos
-                }
-                break;
+        if (todo.nodeType === 1) { // Ensure it's an element node
+            switch (filter) {
+                case "all":
+                    todo.style.display = "flex"; // Show all todos
+                    break;
+                case "completed":
+                    if (todo.classList.contains("completed")) {
+                        todo.style.display = "flex"; // Show completed todos
+                    } else {
+                        todo.style.display = "none"; // Hide incomplete todos
+                    }
+                    break;
+                case "incomplete":
+                    if (!todo.classList.contains("completed")) {
+                        todo.style.display = "flex"; // Show incomplete todos
+                    } else {
+                        todo.style.display = "none"; // Hide completed todos
+                    }
+                    break;
+            }
         }
     });
 }
@@ -175,7 +198,7 @@ function getLocalTodos() {
 // Update the completion status of a todo in local storage
 function updateLocalTodoStatus(todo) {
     let todos = JSON.parse(localStorage.getItem("todos")) || []; // Get existing todos
-    const todoIndex = Array.from(todoList.children).indexOf(todo); // Fid the index of the todo
+    const todoIndex = Array.from(todoList.children).indexOf(todo); // Find the index of the todo
     todos[todoIndex].completed = todo.classList.contains("completed"); // Update its status
     localStorage.setItem("todos", JSON.stringify(todos)); // Save back to local storage
 }
