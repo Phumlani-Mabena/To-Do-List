@@ -170,7 +170,7 @@ select{
     height: auto; /* Fixed height */
     position: relative; /* For positioning child elements like .task-summary */
     margin: auto; /* Center the container on the page */
-    margin-top: 40px; /* Optional additional top margin */
+    margin-top: 40px; /* additional top margin */
 }
 
 /* NEW: Task summary styling */
