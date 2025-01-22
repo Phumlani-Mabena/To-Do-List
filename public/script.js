@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     restoreFilterState(); // Restore and apply the saved filter state
 });
 todoButton.addEventListener("click", addTodo); // Add a new todo when the button is clicked
-todoList.addEventListener("click", deleteCheck); // Handle delete and complete actions
+todoList.addEventListener("click", deleteCheck); // Handle delete, complete, and edit actions
 filterOption.addEventListener("change", filterTodo); // Filter todos based on selection
 
 // Function to update task counts
@@ -68,6 +68,12 @@ function addTodo(event) {
     completedButton.classList.add("complete-btn");
     todoDiv.appendChild(completedButton);
 
+    // Create a button for editing the todo
+    const editButton = document.createElement("button");
+    editButton.innerHTML = '<i class="fas fa-edit"></i>';
+    editButton.classList.add("edit-btn");
+    todoDiv.appendChild(editButton);
+
     // Create a button for deleting the todo
     const trashButton = document.createElement("button");
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
@@ -84,7 +90,7 @@ function addTodo(event) {
     updateTaskCounts();
 }
 
-// Function to handle delete and complete actions
+// Function to handle delete, complete, and edit actions
 function deleteCheck(e) {
     const item = e.target;
 
@@ -105,6 +111,46 @@ function deleteCheck(e) {
         todo.classList.toggle("completed");
         updateLocalTodoStatus(todo); // Update the status in local storage
         updateTaskCounts(); // Update task counts after toggling completion
+    }
+
+    // If the edit button is clicked, allow editing the todo
+    if (item.classList[0] === "edit-btn") {
+        const todo = item.parentElement;
+        const todoText = todo.querySelector(".todo-item");
+        const currentText = todoText.innerText;
+
+        // Create an input field for editing
+        const editInput = document.createElement("input");
+        editInput.type = "text";
+        editInput.value = currentText;
+        editInput.classList.add("edit-input");
+
+        // Replace the todo text with the input field
+        todo.replaceChild(editInput, todoText);
+
+        // Focus on the input field and select the current text
+        editInput.focus();
+        editInput.setSelectionRange(0, editInput.value.length);
+
+        // Handle saving the edited todo
+        editInput.addEventListener("blur", function () {
+            const updatedText = editInput.value.trim();
+            if (updatedText) {
+                todoText.innerText = updatedText;
+                todo.replaceChild(todoText, editInput);
+                updateLocalTodoText(todo, updatedText); // Update local storage
+            } else {
+                alert("Todo cannot be empty!");
+                editInput.focus();
+            }
+        });
+
+        // Save on pressing Enter
+        editInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                editInput.blur(); // Trigger the blur event to save
+            }
+        });
     }
 }
 
@@ -183,6 +229,11 @@ function getLocalTodos() {
         completedButton.classList.add("complete-btn");
         todoDiv.appendChild(completedButton);
 
+        const editButton = document.createElement("button");
+        editButton.innerHTML = '<i class="fas fa-edit"></i>';
+        editButton.classList.add("edit-btn");
+        todoDiv.appendChild(editButton);
+
         const trashButton = document.createElement("button");
         trashButton.innerHTML = '<i class="fas fa-trash"></i>';
         trashButton.classList.add("trash-btn");
@@ -199,7 +250,15 @@ function getLocalTodos() {
 function updateLocalTodoStatus(todo) {
     let todos = JSON.parse(localStorage.getItem("todos")) || []; // Get existing todos
     const todoIndex = Array.from(todoList.children).indexOf(todo); // Find the index of the todo
-    todos[todoIndex].completed = todo.classList.contains("completed"); // Update its status
+    todos[todoIndex].completed = todo.classList.contains("completed"); // Update the status
+    localStorage.setItem("todos", JSON.stringify(todos)); // Save back to local storage
+}
+
+// Function to update a todo's text in local storage
+function updateLocalTodoText(todo, updatedText) {
+    let todos = JSON.parse(localStorage.getItem("todos")) || []; // Get existing todos
+    const todoIndex = Array.from(todoList.children).indexOf(todo); // Find the index of the todo
+    todos[todoIndex].text = updatedText; // Update the text
     localStorage.setItem("todos", JSON.stringify(todos)); // Save back to local storage
 }
 
@@ -207,6 +266,6 @@ function updateLocalTodoStatus(todo) {
 function removeLocalTodos(todo) {
     let todos = JSON.parse(localStorage.getItem("todos")) || []; // Get existing todos
     const todoIndex = Array.from(todoList.children).indexOf(todo); // Find the index of the todo
-    todos.splice(todoIndex, 1); // Remove it from the array
+    todos.splice(todoIndex, 1); // Remove the todo at the index
     localStorage.setItem("todos", JSON.stringify(todos)); // Save back to local storage
 }

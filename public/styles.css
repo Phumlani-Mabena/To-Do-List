@@ -5,7 +5,6 @@
 }
 
 body {
-    /* background-color: mediumslateblue; */
     background-color: #1f242d;
     color: white;
     font-family: "Poppins", sans-serif;
@@ -105,20 +104,22 @@ form button:hover {
 
 /* Style for the edit button */
 .edit-btn {
-    background: #ffcc00; /* Yellow background for the edit button */
+    background: #1e3a5f; /* Updated background color */
     color: white; /* White icon color */
     border: none; /* No border */
     padding: 1rem; /* Same padding as other buttons */
     cursor: pointer; /* Pointer cursor for interactivity */
     font-size: 1.5rem; /* Match font size of other buttons */
-    border-radius: 50%; /* Circular button */
-    transition:0.3s ease; /* Smooth transition on hover */
-    margin-left: 0.5rem; /* Space between buttons */
+    border-radius: 1%; /* Circular button */
+    transition: 0.3s ease; /* Smooth transition on hover */
+    margin-left: 0rem; /* Space between buttons */
+    
+
 }
 
 /* Hover effect for the edit button */
 .edit-btn:hover {
-    background: #e6b800; /* Slightly darker yellow on hover */
+    background: #16304a; /* Slightly darker shade of #1e3a5f for hover */
 }
 
 .todo-item {
