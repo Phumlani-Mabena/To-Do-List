@@ -183,7 +183,7 @@ select {
 
 /* Main container for centering form and task count */
 .container {
-    width: 650px; /* Fixed width */
+    width: 700px; /* Fixed width */
     background-color: #323946;
     padding: 20px;
     border-radius: 8px;
@@ -191,7 +191,7 @@ select {
     display: flex;
     flex-direction: column;
     justify-content: space-around; /* Start alignment for child elements */
-    height: auto; /* Fixed height */
+    height: auto; /* Auto height */
     position: relative; /* For positioning child elements like .task-summary */
     margin: auto; /* Center the container on the page */
     margin-top: 40px; /* Additional top margin */
